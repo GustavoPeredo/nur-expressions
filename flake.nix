@@ -4,6 +4,14 @@
   inputs.nix-lib-extra.url = "github:GustavoPeredo/nix-lib-extra";
   outputs = { self, nixpkgs, nix-lib-extra }:
     let
+      inherit (nixpkgs.lib.attrsets) filterAttrs genAttrs mapAttrs;
+      apkgs = import nixpkgs { 
+        overlays = [ 
+          (self: super: {
+            lib = nix-lib-extra.lib;
+          })
+        ];
+      };
       systems = [
         "x86_64-linux"
         "i686-linux"
@@ -14,36 +22,10 @@
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
     in
     {
-      #homeModules = import ./hm-modules // {
-      #  default = self.homeModules;
-      #};
-      #overlay = import ./overlay.nix {};
-      overlay = final: prev: {
-        more-packages = import ./overlay.nix {
-          pkgs = prev;
-      };};
-      homeModules = { lib, pkgs, ... }: {
-      options.nur = lib.mkOption {
-        type = lib.mkOptionType {
-          name = "nur";
-          description = "An instance of the Nix User repository";
-          check = builtins.isAttrs;
-        };
-        description = "Use this option to import packages from NUR";
-        default = import self {
-          pkgs = pkgs;
-        };
-      };};
       packages = forAllSystems (system: import ./default.nix {
-        pkgs = import nixpkgs { 
-          inherit system; 
-          overlays = [ 
-            (self: super: {
-              readFiles = nix-lib-extra.lib.readFiles;
-              recursiveMergeAttrs = nix-lib-extra.lib.recursiveMergeAttrs;
-            })
-          ];
-        };
+        pkgs = apkgs;
       });
+      lib = import ./lib { inherit (nix-lib-extra) lib; };
+      #nixosModules = mapAttrs (name: path: import path) (import ./modules);
     };
 }

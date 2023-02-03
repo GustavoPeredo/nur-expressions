@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ lib, ... }:
 
-with pkgs; {
-  readFiles = readFiles;
+{
+  readFiles = lib.readFiles;
 
-  recursiveMergeAttrs = recursiveMergeAttrs;
+  recursiveMergeAttrs = lib.recursiveMergeAttrs;
   # Add your library functions here
   #
   # hexint = x: hexvals.${toLower x};
