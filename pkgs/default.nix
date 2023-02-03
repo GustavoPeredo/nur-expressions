@@ -1,0 +1,4 @@
+{ ... }: 
+{
+    flatpak-lol = ./flatpak-lol { ... };
+}
