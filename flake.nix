@@ -1,12 +1,12 @@
 {
-  description = "My personal NUR repository";
+  description = "Reexports some utils and implements flatpak-manager";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  outputs = { self, nixpkgs }:
+  inputs.nix-lib-extra.url = "github:GustavoPeredo/nix-lib-extra";
+  outputs = { self, nixpkgs, nix-lib-extra }:
     let
       systems = [
         "x86_64-linux"
         "i686-linux"
-        "x86_64-darwin"
         "aarch64-linux"
         "armv6l-linux"
         "armv7l-linux"
@@ -15,7 +15,13 @@
     in
     {
       packages = forAllSystems (system: import ./default.nix {
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { 
+          inherit system; 
+          overlays = [ (self: super: {
+            readFiles = nix-lib-extra.lib.readFiles;
+            recursiveMergeAttrs = nix-lib-extra.lib.recursiveMergeAttrs;
+          })];
+        };
       });
     };
 }

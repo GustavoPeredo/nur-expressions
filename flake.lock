@@ -1,12 +1,27 @@
 {
   "nodes": {
+    "nix-lib-extra": {
+      "locked": {
+        "lastModified": 1675382522,
+        "narHash": "sha256-RjIpo5CUwsP1aEyF/Ub4T//5PAGyZszQKaMCvpNlzAQ=",
+        "owner": "GustavoPeredo",
+        "repo": "nix-lib-extra",
+        "rev": "3983118333a5ccec1d434adaf00c6052c912bf16",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GustavoPeredo",
+        "repo": "nix-lib-extra",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1624561540,
-        "narHash": "sha256-izJ2PYZMGMsSkg+e7c9A1x3t/yOLT+qzUM6WQsc2tqo=",
+        "lastModified": 1675279076,
+        "narHash": "sha256-I8sMB4TBkhNY4lcKtb+pwEDB50My3+JG5Ti8J3sEmCc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c6a049a3d32293b24c0f894a840872cf67fd7c11",
+        "rev": "c6fd903606866634312e40cceb2caee8c0c9243f",
         "type": "github"
       },
       "original": {
@@ -18,6 +33,7 @@
     },
     "root": {
       "inputs": {
+        "nix-lib-extra": "nix-lib-extra",
         "nixpkgs": "nixpkgs"
       }
     }
