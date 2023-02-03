@@ -1,5 +1,4 @@
 nix-lib-extra:
-
 {
   readFiles = nix-lib-extra.readFiles;
 

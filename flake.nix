@@ -20,6 +20,6 @@
       });
       
       overlays = import ./overlays { nix-lib-extra = nix-lib-extra.lib; };
-      hmModules = mapAttrs (name: path: import path) (import ./modules);
+      hmModules = mapAttrs (name: path: import path) (import ./modules nix-lib-extra);
     };
 }
