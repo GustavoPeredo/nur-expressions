@@ -19,7 +19,7 @@
       #};
       #overlay = import ./overlay.nix {};
       overlay = final: prev: {
-        nur = import ./overlay.nix {
+        more-packages = import ./overlay.nix {
           pkgs = prev;
       };};
       homeModules = { lib, pkgs, ... }: {
