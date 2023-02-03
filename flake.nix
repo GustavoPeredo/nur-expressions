@@ -1,7 +1,12 @@
 {
   description = "Reexports some utils and implements flatpak-manager";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  inputs.nix-lib-extra.url = "github:GustavoPeredo/nix-lib-extra";
+
+  inputs.nix-lib-extra = {
+    url = "github:GustavoPeredo/nix-lib-extra";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   outputs = { self, nixpkgs, nix-lib-extra }:
     let
       inherit (nixpkgs.lib.attrsets) filterAttrs genAttrs mapAttrs;
