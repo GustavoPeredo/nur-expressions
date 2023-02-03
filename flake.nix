@@ -5,13 +5,6 @@
   outputs = { self, nixpkgs, nix-lib-extra }:
     let
       inherit (nixpkgs.lib.attrsets) filterAttrs genAttrs mapAttrs;
-      apkgs = import nixpkgs { 
-        overlays = [ 
-          (self: super: {
-            lib = nix-lib-extra.lib;
-          })
-        ];
-      };
       systems = [
         "x86_64-linux"
         "i686-linux"
@@ -23,10 +16,10 @@
     in
     {
       packages = forAllSystems (system: import ./default.nix {
-        pkgs = apkgs;
+        pkgs = import nixpkgs { inherit system; };
       });
       
       overlays = import ./overlays { nix-lib-extra = nix-lib-extra.lib; };
-      nixosModules = mapAttrs (name: path: import path) (import ./modules);
+      hmModules = mapAttrs (name: path: import path) (import ./modules);
     };
 }
