@@ -1,4 +1,0 @@
-{ ... }: 
-{
-    flatpak-lol = ./flatpak-lol { ... };
-}

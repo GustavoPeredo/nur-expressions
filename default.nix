@@ -16,4 +16,5 @@
   
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
+  flatpak-lol = pkgs.callPackage ./pkgs/flatpak-lol { };
 }

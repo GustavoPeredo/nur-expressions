@@ -17,18 +17,16 @@
         "armv6l-linux"
         "armv7l-linux"
       ];
-      overlays = import ./overlays { nix-lib-extra = nix-lib-extra.lib; inherit (nixpkgs); };
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
     in
     {
       packages = forAllSystems (system: import ./default.nix {
         pkgs = import nixpkgs { 
           inherit system; 
-          overlays = [ overlays.flatpak-lol ];
         };
       });
       
-      overlays = overlays;
+      overlays = import ./overlays { nix-lib-extra = nix-lib-extra.lib; };
       hmModules = mapAttrs (name: path: import path nix-lib-extra.lib) (import ./modules);
     };
 }
