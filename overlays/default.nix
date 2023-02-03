@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
-    lib = import ./lib.nix;
+    lib = import ./lib.nix { lib = lib; };
 }

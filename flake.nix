@@ -26,7 +26,7 @@
         pkgs = apkgs;
       });
       
-      overlays = import ./overlays;
+      overlays = import ./overlays { lib = nix-lib-extra.lib;};
       nixosModules = mapAttrs (name: path: import path) (import ./modules);
     };
 }
