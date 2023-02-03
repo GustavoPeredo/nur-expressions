@@ -20,7 +20,7 @@
       packages = forAllSystems (system: import ./default.nix {
         pkgs = import nixpkgs { 
           inherit system; 
-          overlays = [ ./overlay.nix (self: super: {
+          overlays = [ (self: super: {
             readFiles = nix-lib-extra.lib.readFiles;
             recursiveMergeAttrs = nix-lib-extra.lib.recursiveMergeAttrs;
           })];
