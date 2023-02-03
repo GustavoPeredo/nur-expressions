@@ -17,14 +17,32 @@
       #homeModules = import ./hm-modules // {
       #  default = self.homeModules;
       #};
-      overlay = import ./overlay.nix;
+      #overlay = import ./overlay.nix {};
+      overlay = final: prev: {
+        nur = import ./overlay.nix {
+          pkgs = prev;
+      };};
+      homeModules = { lib, pkgs, ... }: {
+      options.nur = lib.mkOption {
+        type = lib.mkOptionType {
+          name = "nur";
+          description = "An instance of the Nix User repository";
+          check = builtins.isAttrs;
+        };
+        description = "Use this option to import packages from NUR";
+        default = import self {
+          pkgs = pkgs;
+        };
+      };};
       packages = forAllSystems (system: import ./default.nix {
         pkgs = import nixpkgs { 
           inherit system; 
-          overlays = [ (self: super: {
-            readFiles = nix-lib-extra.lib.readFiles;
-            recursiveMergeAttrs = nix-lib-extra.lib.recursiveMergeAttrs;
-          })];
+          overlays = [ 
+            (self: super: {
+              readFiles = nix-lib-extra.lib.readFiles;
+              recursiveMergeAttrs = nix-lib-extra.lib.recursiveMergeAttrs;
+            })
+          ];
         };
       });
     };
