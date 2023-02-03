@@ -26,6 +26,6 @@
         pkgs = apkgs;
       });
       lib = import ./lib { inherit (nix-lib-extra) lib; };
-      #nixosModules = mapAttrs (name: path: import path) (import ./modules);
+      nixosModules = mapAttrs (name: path: import path) (import ./modules);
     };
 }
