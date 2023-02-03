@@ -103,7 +103,7 @@ in {
 
   config = mkIf cfg.enable {
     systemd.user.startServices = "sd-switch";
-    systemd.user.services = nix-lib-extra.recursiveMergeAttrs (lib.forEach cfg.repos (repo: (
+    systemd.user.services = lib.recursiveMergeAttrs (lib.forEach cfg.repos (repo: (
       if repo.enable then {
         "flatpak-add-${repo.name}" = {
           Install.WantedBy = [ "graphical-session.target" ];
