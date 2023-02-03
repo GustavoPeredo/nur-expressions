@@ -1,3 +1,3 @@
 {
-    lib = ./lib.nix;
+    lib = import ./lib.nix;
 }
