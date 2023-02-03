@@ -14,7 +14,9 @@
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
     in
     {
-      hmModules = import ./hm-modules;
+      homeModules = import ./hm-modules // {
+        default = self.homeModules;
+      };
       packages = forAllSystems (system: import ./default.nix {
         pkgs = import nixpkgs { 
           inherit system; 
