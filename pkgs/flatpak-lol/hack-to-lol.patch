@@ -1,6 +1,6 @@
 --- a/common/flatpak-run.c
 +++ b/common/flatpak-run.c
-@@ -3170,9 +3170,6 @@
+@@ -3168,9 +3168,6 @@
     {SCMP_SYS (uselib), EPERM},
     /* Don't allow disabling accounting */
     {SCMP_SYS (acct), EPERM},
