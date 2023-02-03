@@ -1,12 +1,17 @@
 {
   "nodes": {
     "nix-lib-extra": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1675382522,
-        "narHash": "sha256-RjIpo5CUwsP1aEyF/Ub4T//5PAGyZszQKaMCvpNlzAQ=",
+        "lastModified": 1675436557,
+        "narHash": "sha256-RNGMBQ0YuFr8PCw4GMyqZjstl8XnZqgqcMkiRnDYazE=",
         "owner": "GustavoPeredo",
         "repo": "nix-lib-extra",
-        "rev": "3983118333a5ccec1d434adaf00c6052c912bf16",
+        "rev": "489f0ab1cb5053199a542b1bfba2214c5f7d204c",
         "type": "github"
       },
       "original": {
