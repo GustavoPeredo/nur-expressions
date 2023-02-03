@@ -15,7 +15,6 @@
     in
     {
       packages = forAllSystems (system: import ./default.nix {
-        hmModules.flatpak = self.hmModules.flatpak;
         pkgs = import nixpkgs { 
           inherit system; 
           overlays = [ (self: super: {
