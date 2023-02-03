@@ -1,4 +1,3 @@
-{ ... }:
 {
   flatpak = ./flatpak.nix;
 }
