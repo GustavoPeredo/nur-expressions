@@ -1,5 +1,5 @@
-lib:
+nix-lib-extra:
 self: super:
 {
-  lib = super.lib // (import ../lib/default.nix { lib = lib; });
+  lib = super.lib // (import ../lib/default.nix nix-lib-extra);
 }

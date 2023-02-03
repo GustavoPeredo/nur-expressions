@@ -1,9 +1,9 @@
-{ lib, ... }:
+nix-lib-extra:
 
 {
-  readFiles = lib.readFiles;
+  readFiles = nix-lib-extra.readFiles;
 
-  recursiveMergeAttrs = lib.recursiveMergeAttrs;
+  recursiveMergeAttrs = nix-lib-extra.recursiveMergeAttrs;
   # Add your library functions here
   #
   # hexint = x: hexvals.${toLower x};

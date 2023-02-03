@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ nix-lib-extra, ... }:
 {
-    lib = import ./lib.nix { lib = lib; };
+    lib = import ./lib.nix nix-lib-extra;
 }
