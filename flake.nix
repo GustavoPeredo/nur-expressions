@@ -17,7 +17,7 @@
       #homeModules = import ./hm-modules // {
       #  default = self.homeModules;
       #};
-      overlay = ./overlay.nix;
+      overlay = import ./overlay.nix;
       packages = forAllSystems (system: import ./default.nix {
         pkgs = import nixpkgs { 
           inherit system; 
