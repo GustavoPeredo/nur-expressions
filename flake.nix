@@ -25,7 +25,8 @@
       packages = forAllSystems (system: import ./default.nix {
         pkgs = apkgs;
       });
-      lib = import ./lib { inherit (nix-lib-extra) lib; };
+      
+      overlays = import ./overlays;
       nixosModules = mapAttrs (name: path: import path) (import ./modules);
     };
 }
